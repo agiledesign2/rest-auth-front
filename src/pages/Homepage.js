@@ -1,12 +1,13 @@
 import React from 'react';
-import '../fonts/feather/feather.min.css';
-import Header from '../common/Header';
+import Header from '../Components/Header';
+import Navbar from '../Components/Navbar';
 import {Link} from 'react-router-dom';
 
 
 const Homepage = () => {
   return (
     <>
+    <Navbar />
     <Header/>
     <div className='container'>
       <div className='row justify-content-center'>

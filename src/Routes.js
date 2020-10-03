@@ -15,7 +15,7 @@ function BaseRouter() {
       </Route>
 
       <Route path='/login'>
-        <LoginPage/>
+        <LoginPage dir={'login'} />
       </Route>
 
       <Route path='/logout'>

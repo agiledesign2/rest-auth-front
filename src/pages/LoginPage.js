@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom';
+import Navbar from '../Components/Navbar';
 import axiosInstance from '../axiosInstance';
 
 const LoginPage = () => {
@@ -37,6 +38,8 @@ const LoginPage = () => {
   };
 
   return isLoggedIn ? <Redirect to="/"/> : (
+    <>
+    <Navbar />
     <div className='container'>
       <div className='row justify-content-center'>
         <div className='col-12 col-md-5 col-xl-4 my-5'>
@@ -107,6 +110,7 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

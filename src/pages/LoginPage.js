@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {Redirect} from 'react-router-dom';
 import Navbar from '../Components/Navbar';
-import axiosInstance from '../axiosInstance';
+import base, { authLogin } from '../axiosInstance';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setisLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
    
@@ -23,21 +23,23 @@ const LoginPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try{
-      const response = await axiosInstance.post('/rest-auth/login/', {
-        username: 'username',
-        password: password
-      });
-      axiosInstance.defaults.headers['Authorization'] = response.data.key;
-      localStorage.setItem('access_key', response.data.key);
-      //localStorage.setItem('refresh_token', response.data.refresh);
-      setisLoggedIn(true);
+      const response = await authLogin(
+        username,
+        password
+      );
+      if (response === undefined) {
+        setIsLoggedIn(false);
+      } else {
+        base.headers['Authorization'] = response.data.key;
+        setIsLoggedIn(true);
+      }
     }catch(error){
-      setisLoggedIn(false);
+      setIsLoggedIn(false);
       throw error;
     }
   };
 
-  return isLoggedIn ? <Redirect to="/"/> : (
+  return isLoggedIn ? <Redirect to="/" /> : (
     <>
     <Navbar />
     <div className='container'>

@@ -75,6 +75,11 @@ export const authCheckState = () => {
     }
 };
 
+export const logout = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("expirationDate");
+};
+
 /*axios.interceptors.response.use(response => response,
     error => {
         const originalRequest = error.config;

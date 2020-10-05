@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Redirect} from 'react-router-dom';
 import Navbar from '../Components/Navbar';
-import axiosInstance from '../axiosInstance';
+import base, { authSignup } from '../axiosInstance';
 
 const SignupPage = () => {
   const [username, setUsername] = useState('');
@@ -33,16 +33,18 @@ const SignupPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try{
-      const response = await axiosInstance.post('/rest-auth/registration/', {
-        username: username,
-        email: email,
-        password1: password1,
-        password2: password2
-      });
-      //axiosInstance.defaults.headers['Authorization'] = response.data.key;
-      //localStorage.setItem('access_key', response.data.key);
-      //localStorage.setItem('refresh_token', response.data.refresh);
-      setisLoggedIn(true);
+      const response = await authSignup(
+        username,
+        email,
+        password1,
+        password2
+      );
+      if (response === undefined) {
+        setIsLoggedIn(false);
+      } else {
+        base.headers['Authorization'] = response.data.key;
+        setIsLoggedIn(true);
+      }
     }catch(error){
       setisLoggedIn(false);
       throw error;

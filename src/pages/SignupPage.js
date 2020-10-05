@@ -8,7 +8,7 @@ const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
-  const [isLoggedIn, setisLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
    
@@ -46,7 +46,7 @@ const SignupPage = () => {
         setIsLoggedIn(true);
       }
     }catch(error){
-      setisLoggedIn(false);
+      setIsLoggedIn(false);
       throw error;
     }
   };

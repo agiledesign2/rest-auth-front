@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Redirect} from 'react-router-dom';
 import Navbar from '../Components/Navbar';
-import axiosInstance from '../axiosInstance';
+import base, { logout } from '../axiosInstance';
 
 const LogoutPage = () => {
   const [isLoggedIn, setisLoggedIn] = useState(true)
@@ -13,9 +13,8 @@ const LogoutPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try{
-      const response = await axiosInstance.post('/rest-auth/logout/', {});
-      //axiosInstance.defaults.headers['Authorization'] = response.data.key;
-      localStorage.removeItem('access_key');
+      const response = await logout();
+      //base.headers['Authorization'] = '';
       //localStorage.setItem('refresh_token', response.data.refresh);
       setisLoggedIn(false);
     }catch(error){

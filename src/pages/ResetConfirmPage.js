@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {Redirect} from 'react-router-dom';
 import Navbar from '../Components/Navbar';
-import axiosInstance from '../axiosInstance';
+import { authResetConfirm } from '../axiosInstance';
 
-const ResetConfirmPage = () => {
+const ResetConfirmPage = ({ token }) => {
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
-  const [isLoggedIn, setisLoggedIn] = useState(false)
+  const [isLoggedIn, setisLoggedIn] = useState(token ? true : false)
 
   useEffect(() => {
    
@@ -23,12 +23,7 @@ const ResetConfirmPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try{
-      const response = await axiosInstance.post('/rest-auth/password/reset/confirm/', {
-        token: '',
-        uid: '',
-        new_password1: password1,
-        new_password2: password2
-      });
+      const response = await authResetConfirm(token, '', password1, password2);
       //axiosInstance.defaults.headers['Authorization'] = response.data.key;
       //localStorage.setItem('access_key', response.data.key);
       //localStorage.setItem('refresh_token', response.data.refresh);

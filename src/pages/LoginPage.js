@@ -69,7 +69,7 @@ const LoginPage = () => {
                 </div>
                 <div className='col-auto'>
                   <a
-                    href='/accounts/password/reset/'
+                    href='/reset/'
                     className='form-text small text-muted'
                   >
                     Forgot Password?

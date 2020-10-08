@@ -6,12 +6,15 @@ import LogoutPage from './Pages/LogoutPage';
 import SignupPage from './Pages/SignupPage';
 import ResetPage from './Pages/ResetPage';
 import ResetConfirmPage from './Pages/ResetConfirmPage';
+import { authCheckState } from '../axiosInstance';
 
 function BaseRouter() {
+  const token = authCheckState();
+
   return (
     <>
       <Route exact path='/'>
-        <HomePage />
+        <HomePage token={token} />
       </Route>
 
       <Route path='/login'>
@@ -31,7 +34,7 @@ function BaseRouter() {
       </Route>
 
       <Route path='/confirm'>
-        <ResetConfirmPage/>
+        <ResetConfirmPage token={token} />
       </Route>        
     </>
   );

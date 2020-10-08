@@ -2,21 +2,38 @@ import React from 'react';
 import Header from '../Components/Header';
 import Navbar from '../Components/Navbar';
 import {Link} from 'react-router-dom';
-import Alert from '../Components/Alert/Alert';
-import CartSuccess from './CartSuccess';
+import Alert from '../Components/Alert';
+import AlertDismiss from '../Components/AlertDismiss';
+import AlertUncontrolledDismiss from '../Components/AlertUncontrolledDismiss';
+import ContainerResponsive from '../Components/ContainerResponsive';
+import Toast from '../Components/Toast';
+import ToastDismiss from '../Components/ToastDismiss';
+import ToastHeaderIcon from '../Components/ToastHeaderIcon';
+import Tooltip from '../Components/Tooltip';
+import Pagination from '../Components/Pagination';
+import ListGroup from '../Components/ListGroup';
+import Jumbotron from '../Components/Jumbotron';
+import JumbotronFluid from '../Components/JumbotronFluid';
 
 
-const Homepage = () => {
+
+const Homepage = ({ token }) => {
   return (
     <>
-    <Navbar />
-    <div className="wrapper">
-      <Alert title="Items Not Added" type="error">
-        <div>Your items are out of stock.</div>
-      </Alert>
-      <CartSuccess />
-    </div>
+    <Navbar  token={token} />
+    <Alert />
+    <AlertDismiss />
+    <AlertUncontrolledDismiss />
+    <ContainerResponsive />
+    <Toast />
+    <ToastDismiss />
+    <ToastHeaderIcon />
+    <Tooltip />
     <Header/>
+    <Pagination />
+    <ListGroup />
+    <Jumbotron />
+    <JumbotronFluid />
     <div className='container'>
       <div className='row justify-content-center'>
         <div className='col-12 col-lg-10 col-xl-8'>

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import {Redirect} from 'react-router-dom';
 import Navbar from '../Components/Navbar';
-import axiosInstance from '../axiosInstance';
+import { authReset } from '../axiosInstance';
 
 const ResetPage = () => {
   const [email, setEmail] = useState('');
-  const [isLoggedIn, setisLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
    
@@ -18,22 +18,21 @@ const ResetPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try{
-      const response = await axiosInstance.post('/rest-auth/password/reset/', {
-        email: email,
-      });
-      //axiosInstance.defaults.headers['Authorization'] = response.data.key;
-      //localStorage.setItem('access_key', response.data.key);
-      //localStorage.setItem('refresh_token', response.data.refresh);
-      setisLoggedIn(true);
+      const response = await authReset(email);
+      if (response === undefined) {
+        setIsLoggedIn(false);
+      } else {
+        setIsLoggedIn(true);
+      }
     }catch(error){
-      setisLoggedIn(false);
+      setIsLoggedIn(false);
       throw error;
     }
   };
 
   return isLoggedIn ? <Redirect to="/"/> : (
     <>
-    <Navbar />
+    <Navbar token={token} />
     <div className='container'>
       <div className='row justify-content-center'>
         <div className='col-12 col-md-5 col-xl-4 my-5'>

@@ -3,8 +3,8 @@ import axios from 'axios';
 const CSRF_COOKIE_NAME = "csrftoken";
 const CSRF_HEADER_NAME = "X-CSRFToken";
 
-const base = axios.
-    create({
+const base = axios
+    .create({
       baseURL: 'http://127.0.0.1:8000',
       timeout: 5000,
       responseType: "json",
@@ -62,7 +62,7 @@ export const authCheckState = () => {
     if (token === undefined) {
       return false;
     } else {
-      const expirationDate = new Date(localStorage.getItem("expirationDate"));
+      let expirationDate = new Date(localStorage.getItem("expirationDate"));
       if (expirationDate <= new Date()) {
         return false;
       } else {
@@ -78,6 +78,33 @@ export const authCheckState = () => {
 export const logout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("expirationDate");
+};
+
+export const authReset = (email) => {
+    base
+      .post('/rest-auth/password/reset/', {
+        email: email,
+      })
+      .then(res => {
+        console.lot(res.data);
+        return res;
+      })
+      .catch(err => console.error(err));
+};
+
+export const authResetConfirm = (token, uid, password1, password2) => {
+    base
+      .post('/rest-auth/password/reset/confirm/', {
+        token: token,
+        uid: uid,
+        new_password1: password1,
+        new_password2: password2
+      })
+      .then(res => {
+        console.lot(res.data);
+        return res;
+      })
+      .catch(err => console.error(err));
 };
 
 /*axios.interceptors.response.use(response => response,

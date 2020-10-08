@@ -14,7 +14,7 @@ import {
   NavbarText
 } from 'reactstrap';
 
-const Example = ({dir}) => {  //props
+const Example = ({dir, token}) => {  //props
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -49,12 +49,25 @@ const Example = ({dir}) => {  //props
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-            <NavItem>
-              <NavLink href="/login/" active>Login</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/signup/">Signup</NavLink>
-            </NavItem>
+            {if (token) {
+              <>
+              <NavItem>
+                <NavLink href="/login/" active>Dgomez5</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/logout/">Logout</NavLink>
+              </NavItem>
+              </>
+            } else {
+              <>
+              <NavItem>
+                <NavLink href="/login/" active>Login</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/signup/">Signup</NavLink>
+              </NavItem>
+              </>
+            }}
           </Nav>
           <NavbarText>Simple Text</NavbarText>
         </Collapse>

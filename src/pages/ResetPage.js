@@ -32,7 +32,7 @@ const ResetPage = () => {
 
   return isLoggedIn ? <Redirect to="/"/> : (
     <>
-    <Navbar token={token} />
+    <Navbar />
     <div className='container'>
       <div className='row justify-content-center'>
         <div className='col-12 col-md-5 col-xl-4 my-5'>

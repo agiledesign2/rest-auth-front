@@ -49,7 +49,8 @@ const Example = ({dir, token}) => {  //props
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-            {if (token) {
+            <>
+            { token ?
               <>
               <NavItem>
                 <NavLink href="/login/" active>Dgomez5</NavLink>
@@ -58,7 +59,7 @@ const Example = ({dir, token}) => {  //props
                 <NavLink href="/logout/">Logout</NavLink>
               </NavItem>
               </>
-            } else {
+            :
               <>
               <NavItem>
                 <NavLink href="/login/" active>Login</NavLink>
@@ -67,7 +68,8 @@ const Example = ({dir, token}) => {  //props
                 <NavLink href="/signup/">Signup</NavLink>
               </NavItem>
               </>
-            }}
+            }
+            </>
           </Nav>
           <NavbarText>Simple Text</NavbarText>
         </Collapse>

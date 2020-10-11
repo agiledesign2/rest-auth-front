@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import HomePage from './Pages/Homepage';
 import LoginPage from './Pages/LoginPage';
 import LogoutPage from './Pages/LogoutPage';
@@ -8,8 +8,14 @@ import ResetPage from './Pages/ResetPage';
 import ResetConfirmPage from './Pages/ResetConfirmPage';
 import { authCheckState } from './axiosInstance';
 
-function BaseRouter() {
+function BaseRouter({location}) {
   const token = authCheckState();
+
+  const { search } = location
+  console.log(search)
+  /*const value=queryString.parse(search);
+  console.log('token',value.casa)//123
+  */
 
   return (
     <>

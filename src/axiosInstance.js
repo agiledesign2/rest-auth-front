@@ -59,7 +59,6 @@ export const checkAuthTimeout = expirationTime => {
 
 export const authCheckState = () => {
     const token = localStorage.getItem("token");
-    console.log(token)
     if (token === undefined) {
       return false;
     } else {

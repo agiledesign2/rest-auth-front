@@ -11,8 +11,15 @@ import { authCheckState } from './axiosInstance';
 function BaseRouter({location}) {
   const token = authCheckState();
 
-  const { search } = location
-  console.log(search)
+  let isLoggedIn;
+
+  if(location.state){
+    isLoggedIn = location.state.isLoggedIn;
+    console.log(isLoggedIn);
+  }else{
+    isLoggedIn = false;
+    console.log(isLoggedIn);
+  }
   /*const value=queryString.parse(search);
   console.log('token',value.casa)//123
   */
@@ -20,7 +27,7 @@ function BaseRouter({location}) {
   return (
     <>
       <Route exact path='/'>
-        <HomePage token={token} />
+        <HomePage token={token} isLoggedIn={isLoggedIn} />
       </Route>
 
       <Route path='/login'>

@@ -6,7 +6,7 @@ import base, { authLogin } from '../axiosInstance';
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
 
   useEffect(() => {
    
@@ -39,7 +39,12 @@ const LoginPage = () => {
     }
   };
 
-  return isLoggedIn ? <Redirect to="/" /> : (
+  const location = {
+    pathname: '/',
+    state: { isLoggedIn: isLoggedIn }
+  }
+
+  return isLoggedIn ? <Redirect to={location} /> : (
     <>
     <Navbar />
     <div className='container'>

@@ -20,16 +20,16 @@ import JumbotronFluid from '../Components/JumbotronFluid';
 const Homepage = ({ token, isLoggedIn }) => {
   return (
     <>
-    <Navbar  token={token} />
+    <Navbar token={token} />
     <>
     {isLoggedIn ?
       <>
-      <Alert />
+      <AlertDismiss />
+      <AlertUncontrolledDismiss />
       </>
       :
       <>
-      <AlertDismiss />
-      <AlertUncontrolledDismiss />
+      <Alert />
       </>
     }
     </>
